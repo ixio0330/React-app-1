@@ -68,7 +68,7 @@ export default function useAsync<D>(
   useEffect(() => {
     if (skip) return;
     fetch();
-  }, deps ?? []);
+  }, deps || []);
   
   return {
     state,

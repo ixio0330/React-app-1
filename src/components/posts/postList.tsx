@@ -2,6 +2,11 @@ import { PostDto } from "../../api/post";
 import PostItem from "./postItem";
 import store from "../../store";
 import { observer } from 'mobx-react';
+import styled from "styled-components";
+
+const PaginationButtonTemplate = styled.div`
+  text-align: center;
+`
 
 export default observer(function PostList(props: { posts: PostDto[] }) {
   const { postStore } = store();
@@ -13,10 +18,10 @@ export default observer(function PostList(props: { posts: PostDto[] }) {
           posts.map((post) => <PostItem key={ post.id } post={post} />)
         }
       </ul>
-      <div>
+      <PaginationButtonTemplate>
         <button onClick={ () => postStore.onClickPrev() }>prev</button>
         <button onClick={ () => postStore.onClickNext(props.posts) }>next</button>
-      </div>
+      </PaginationButtonTemplate>
     </>
   )
 })

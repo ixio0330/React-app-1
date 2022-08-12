@@ -1,22 +1,18 @@
 import { Suspense } from 'react';
 import { routes } from './router/routes';
+import { Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
-const LinkTemplate = styled.div`
-  position: absolute;
-  top: 10px;
-  right: 10px;
+const MainTemplate = styled.main`
+  margin: 100px auto 40px;
+  width: 80%;
+  min-width: 360px;
+  min-height: calc(100vh - 142px);
 `
+
 export default function App() {
   return (
-    <BrowserRouter>
-      <LinkTemplate>
-        <Link to='/'>Home | </Link>
-        <Link to='/user'>User | </Link>
-        <Link to='/post'>Post | </Link>
-        <Link to='/basic'>Basic</Link>
-      </LinkTemplate>
+    <MainTemplate>
       <Suspense fallback={<div>Page loading...</div>}>
         <Routes>
           {
@@ -24,7 +20,7 @@ export default function App() {
           }
       </Routes>
       </Suspense>
-    </BrowserRouter>
+    </MainTemplate>
   );
 }
 

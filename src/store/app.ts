@@ -2,9 +2,13 @@ import { makeAutoObservable } from 'mobx';
 
 type ThemeType = 'light' | 'dark';
 export interface Theme {
+  // base
   color: string;
   text: string;
   border: string;
+
+  // header
+  headerColor: string;
 }
 
 class AppStore {
@@ -12,12 +16,14 @@ class AppStore {
   private LigthTheme: Theme = {
     color: '#e9ecef',
     text: '#31302E',
-    border: 'eaeaea'
+    border: '#cfcfcf',
+    headerColor: '#37474F',
   };
   private DarkTheme: Theme = {
     color: '#1E1E22',
     text: '#ccc',
-    border: '#2c2d33',
+    border: '#555',
+    headerColor: '#263238',
   };
   private Theme: {[key in ThemeType]: Theme} = {
     light: this.LigthTheme,
