@@ -16,6 +16,6 @@ export async function getById(id: number) {
   return await http.get(`comments/${id}`);
 }
 
-export async function getByPostId(id: number) {
+export async function getByPostId(id: number): Promise<CommentDto[]> {
   return await http.get(`comments?postId=${id}`);
 }

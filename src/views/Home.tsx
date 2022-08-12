@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div>
       Home
-      <p>{ lastUpdate }</p>
+      <p>{lastUpdate}</p>
     </div>
   )
 }
