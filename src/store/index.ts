@@ -1,9 +1,11 @@
 import postStore from './post';
 import appStore from './app';
+import userStore from './user';
 
 const store = () => ({
   postStore,
-  appStore
+  appStore,
+  userStore,
 });
 
 export default store;

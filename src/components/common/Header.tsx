@@ -4,7 +4,11 @@ import * as uuid from 'uuid';
 // icon
 import { RiHome2Line, RiFilePaperLine } from 'react-icons/ri';
 import { BiUser } from 'react-icons/bi';
+import { IoIosLogIn, IoIosLogOut } from "react-icons/io";
+
 import { Link } from "react-router-dom";
+import store from "../../store";
+import { observer } from "mobx-react-lite";
 
 const HeaderTemplate = styled.div`
   width: 100%;
@@ -55,10 +59,16 @@ const tempRoute = [
     name: 'User',
     hide: false,
     hideName: false,
-  },
+  }
 ]
 
-export default function Header() {
+export default observer(function Header() {
+  const { userStore } = store();
+
+  function logout() {
+    userStore.logout();
+  }
+
   return (
     <HeaderTemplate>
       <MenuTemplate>
@@ -67,12 +77,17 @@ export default function Header() {
             <li key={route.id}>
               <Link to={route.path} style={LinkStyle}>
                 <route.icon />
-                { !route.hideName && <span>{ route.name }</span> }
+                {!route.hideName && <span>{route.name}</span>}
               </Link>
             </li>
           ))
         }
+        {
+          userStore.getIsLogin()
+            ? <li onClick={logout}><IoIosLogOut />Logout</li>
+            : <li><Link to='/login'><IoIosLogIn />Login</Link></li>
+        }
       </MenuTemplate>
     </HeaderTemplate>
   )
-}
+});
